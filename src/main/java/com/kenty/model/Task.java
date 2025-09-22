@@ -30,7 +30,6 @@ public class Task implements Comparable<Task>{
     public void setStatus(String status) {
         switch (status) {
             case "PENDING" -> this.status = TaskStatus.PENDING;
-            case "IN_PROGRESS" -> this.status = TaskStatus.IN_PROGRESS;
             case "DONE" -> this.status = TaskStatus.DONE;
         }
     }
