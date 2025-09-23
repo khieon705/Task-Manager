@@ -3,18 +3,11 @@ package com.kenty.model;
 import java.time.LocalDate;
 
 public class Task implements Comparable<Task>{
-    private final long id;
+    private long id;
     private String title;
     private String description;
     private LocalDate dueDate;
     private TaskStatus status; 
-
-    private static long taskInstanceCount = 0;
-
-    public Task() {
-        this.id = ++taskInstanceCount;
-        status = TaskStatus.PENDING;
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -30,6 +23,10 @@ public class Task implements Comparable<Task>{
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {
