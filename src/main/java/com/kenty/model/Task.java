@@ -7,12 +7,13 @@ public class Task implements Comparable<Task>{
     private String title;
     private String description;
     private LocalDate dueDate;
-    private TaskStatus status;
+    private TaskStatus status; 
 
     private static long taskInstanceCount = 0;
 
     public Task() {
         this.id = ++taskInstanceCount;
+        status = TaskStatus.PENDING;
     }
 
     public void setTitle(String title) {
@@ -27,11 +28,8 @@ public class Task implements Comparable<Task>{
         this.dueDate = dueDate;
     }
 
-    public void setStatus(String status) {
-        switch (status) {
-            case "PENDING" -> this.status = TaskStatus.PENDING;
-            case "DONE" -> this.status = TaskStatus.DONE;
-        }
+    public void setStatus(TaskStatus status) {
+        this.status = status;
     }
 
     public long getId() {
