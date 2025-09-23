@@ -41,16 +41,9 @@ public class TaskController {
     @GetMapping("/tasks/{id}")
     public ResponseEntity<Task> taskById(@PathVariable long id) {
         Task task = taskService.getTaskById(id);
-
-        if (task == null) {
-            return ResponseEntity
-                        .status(HttpStatus.NO_CONTENT)
-                        .build();
-        } else {
-            return ResponseEntity
+        return ResponseEntity
                         .status(HttpStatus.OK)
                         .body(task);
-        }
     }
 
     @PostMapping("/tasks")
@@ -63,8 +56,7 @@ public class TaskController {
 
     @PutMapping("/tasks/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable long id, @RequestBody Task updatedTask) {
-        taskService.updateTask(id, updatedTask);
-        Task task = taskService.getTaskById(id);
+        Task task = taskService.updateTask(id, updatedTask);
         return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(task);
@@ -72,16 +64,9 @@ public class TaskController {
 
     @DeleteMapping("/tasks/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable long id) {
-        boolean success = taskService.deleteTask(id);
-
-        if (success) {
-            return ResponseEntity
-                        .status(HttpStatus.NOT_FOUND)
-                        .build();
-        } else {
-            return ResponseEntity  
-                        .status(HttpStatus.NOT_FOUND)
-                        .build();
-        }
+        taskService.deleteTask(id);
+        return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .build();
     }
 }

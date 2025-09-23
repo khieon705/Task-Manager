@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.stereotype.Service;
 
+import com.kenty.exception.NoTaskFoundException;
 import com.kenty.model.Task;
 import com.kenty.repository.TaskRepository;
 
@@ -20,6 +21,12 @@ public class TaskService {
     }
 
     public Task getTaskById(long id) {
+        Task task = taskRepository.findById(id);
+
+        if (task == null) {
+            throw new NoTaskFoundException("Task with id " + id + " not found");
+        }
+        
         return taskRepository.findById(id);
     }
 
