@@ -26,19 +26,29 @@ public class TaskService {
         if (task == null) {
             throw new NoTaskFoundException("Task with id " + id + " not found");
         }
-        
-        return taskRepository.findById(id);
+
+        return task;
     }
 
     public Task updateTask(long id, Task task) {
-        return taskRepository.updateTask(id, task);
+        Task t = taskRepository.updateTask(id, task);
+        
+        if (t == null) {
+            throw new NoTaskFoundException("Task with id " + id + " not found");
+        }
+
+        return t;
     }
 
     public void addTask(Task task) {
         taskRepository.addTask(task); 
     }
 
-    public boolean deleteTask(long id) {
-        return taskRepository.deleteTask(id);
+    public void deleteTask(long id) {
+        boolean success = taskRepository.deleteTask(id);
+
+        if (success == false) {
+            throw new NoTaskFoundException("Task with id " + id + " not found");
+        }
     } 
 }
