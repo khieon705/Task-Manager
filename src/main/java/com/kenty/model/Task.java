@@ -2,7 +2,7 @@ package com.kenty.model;
 
 import java.time.LocalDate;
 
-public class Task implements Comparable<Task>{
+public class Task {
     private long id;
     private String title;
     private String description;
@@ -47,16 +47,5 @@ public class Task implements Comparable<Task>{
 
     public TaskStatus getStatus() {
         return status;
-    }
-
-    @Override
-    public int compareTo(Task o) {
-        if (this.dueDate.isBefore(o.getDueDate())) {
-            return -1;
-        } else if (this.dueDate.isAfter(o.getDueDate())) {
-            return 1;
-        } else {
-            return this.title.compareTo(o.getTitle());
-        }
     }
 }
