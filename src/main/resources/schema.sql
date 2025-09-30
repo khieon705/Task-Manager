@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS task (
     description VARCHAR(100) NOT NULL,
     due_date DATE NOT NULL,
     status CHAR(7) NOT NULL
-) 
+);
